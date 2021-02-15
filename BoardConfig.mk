@@ -1,0 +1,100 @@
+#
+# Copyright (C) 2021 The LineageOS Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+BUILD_BROKEN_DUP_RULES := true
+
+DEVICE_PATH := device/amazon/maverick
+
+# Platform
+TARGET_BOARD_PLATFORM := mt8183
+TARGET_NO_BOOTLOADER := true
+BOARD_VENDOR := amazon
+
+# Architecture
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a53
+
+TARGET_USES_64_BIT_BINDER := true
+
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
+# System-as-root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
+
+# Boot
+BOARD_KERNEL_BASE := 0x40078000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_RAMDISK_OFFSET := 0x14f88000
+BOARD_SECOND_OFFSET := 0x00e88000
+BOARD_KERNEL_TAGS_OFFSET := 0x13f88000
+BOARD_KERNEL_PAGESIZE := 2048
+
+BOARD_BOOTIMG_HEADER_VERSION := 1
+BOARD_HASH_TYPE := sha1
+
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+
+# Kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel/amazon/maverick
+TARGET_KERNEL_CONFIG := maverick_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+NEED_KERNEL_MODULE_SYSTEM := true
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 42958848
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_CACHEIMAGE_PARTITION_SIZE := 528482304
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 58275642368
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+#BOARD_VENDORIMAGE_PARTITION_SIZE := 301989888
+#BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Recovery
+TARGET_OTA_ASSERT_DEVICE := maverick
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/fstab.mt8183
+
+# Vendor
+BUILD_WITHOUT_VENDOR := true
+
+# Network Routing
+TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE := true
+
+# SELinux
+TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
+TARGET_HAS_FUSEBLK_SEPOLICY_ON_VENDOR := true
+
+# VNDK
+BOARD_VNDK_VERSION := current
+PRODUCT_EXTRA_VNDK_VERSIONS := 28
+
+# AVB
+BOARD_AVB_ENABLE := true
